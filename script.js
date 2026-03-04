@@ -8,6 +8,41 @@ document.addEventListener('DOMContentLoaded', function() {
     const clearCompletedBtn = document.getElementById('clearCompleted');
     const currentDateSpan = document.getElementById('currentDate');
 
+
+    function saveTasks() {
+        const tasks = [];
+        const taskItems = taskList.querySelectorAll('.task-item');
+        
+        taskItems.forEach(item => {
+            const checkbox = item.querySelector('.task-checkbox');
+            const text = item.querySelector('.task-text').textContent;
+            tasks.push({
+                text: text,
+                completed: checkbox.checked
+            });
+        });
+        
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+
+
+    function loadTasks() {
+        const savedTasks = localStorage.getItem('tasks');
+        
+        if (savedTasks) {
+            const tasks = JSON.parse(savedTasks);
+            taskList.innerHTML = ''; 
+            
+            tasks.forEach(task => {
+                const newTask = createTask(task.text, task.completed);
+                taskList.appendChild(newTask);
+            });
+        }
+
+        
+        updateProgress();
+    }
+
     function setCurrentDate() {
         const now = new Date();
         const day = now.getDate().toString().padStart(2, '0');
@@ -42,6 +77,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const percent = Math.round((completed / total) * 100);
         progressFill.style.width = percent + '%';
         progressPercent.textContent = percent + '%';
+        
+
+        saveTasks();
     }
 
     function createTask(text, isChecked = false) {
@@ -99,25 +137,12 @@ document.addEventListener('DOMContentLoaded', function() {
         updateProgress();
     }
 
-    function setupExistingTasks() {
-        const tasks = taskList.querySelectorAll('.task-item');
-        tasks.forEach(task => {
-            const checkbox = task.querySelector('.task-checkbox');
-            const deleteBtn = task.querySelector('.delete-btn');
 
-            if (checkbox) {
-                checkbox.addEventListener('change', updateProgress);
-            }
+    loadTasks();
 
-            if (deleteBtn) {
-                deleteBtn.addEventListener('click', function() {
-                    task.remove();
-                    updateProgress();
-                });
-            }
-        });
-        updateProgress();
-    }
+
+    setCurrentDate();
+
 
     addBtn.addEventListener('click', addNewTask);
     
@@ -128,7 +153,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     clearCompletedBtn.addEventListener('click', clearCompletedTasks);
-
+});
     setCurrentDate();
     setupExistingTasks();
+
 });
