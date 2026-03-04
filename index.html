@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo-лист</title>
+    <title>Todo</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -23,23 +23,7 @@
             </div>
         </div>
 
-        <ul class="task-list" id="taskList">
-            <li class="task-item">
-                <input type="checkbox" class="task-checkbox" checked>
-                <span class="task-text">Позвонить клиенту</span>
-                <button class="delete-btn">✕</button>
-            </li>
-            <li class="task-item">
-                <input type="checkbox" class="task-checkbox">
-                <span class="task-text">Подготовить отчёт</span>
-                <button class="delete-btn">✕</button>
-            </li>
-            <li class="task-item">
-                <input type="checkbox" class="task-checkbox">
-                <span class="task-text">Сходить в магазин</span>
-                <button class="delete-btn">✕</button>
-            </li>
-        </ul>
+        <ul class="task-list" id="taskList"></ul>
 
         <div class="add-task">
             <input type="text" class="task-input" id="taskInput" placeholder="Новая задача...">
@@ -48,7 +32,7 @@
 
         <div class="footer-actions">
             <button class="clear-completed" id="clearCompleted">Очистить выполненные</button>
-            <span class="tasks-count" id="tasksCount">Всего: 3</span>
+            <span class="tasks-count" id="tasksCount">Всего: 0</span>
         </div>
     </div>
 
