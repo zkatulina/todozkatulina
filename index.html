@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo-лист</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="todo-app">
+        <div class="app-header">
+            <h1>Список задач</h1>
+            <div class="date-display" id="currentDate"></div>
+        </div>
+
+        <div class="progress-section">
+            <div class="progress-info">
+                <span>Прогресс:</span>
+                <span id="progressPercent">0%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+            </div>
+        </div>
+
+        <ul class="task-list" id="taskList">
+            <li class="task-item">
+                <input type="checkbox" class="task-checkbox" checked>
+                <span class="task-text">Позвонить клиенту</span>
+                <button class="delete-btn">✕</button>
+            </li>
+            <li class="task-item">
+                <input type="checkbox" class="task-checkbox">
+                <span class="task-text">Подготовить отчёт</span>
+                <button class="delete-btn">✕</button>
+            </li>
+            <li class="task-item">
+                <input type="checkbox" class="task-checkbox">
+                <span class="task-text">Сходить в магазин</span>
+                <button class="delete-btn">✕</button>
+            </li>
+        </ul>
+
+        <div class="add-task">
+            <input type="text" class="task-input" id="taskInput" placeholder="Новая задача...">
+            <button class="add-btn" id="addTaskBtn">Добавить</button>
+        </div>
+
+        <div class="footer-actions">
+            <button class="clear-completed" id="clearCompleted">Очистить выполненные</button>
+            <span class="tasks-count" id="tasksCount">Всего: 3</span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
